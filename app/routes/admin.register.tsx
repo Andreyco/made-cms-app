@@ -2,15 +2,6 @@ import { ActionFunction, Form } from "remix";
 import { databaseService } from "~/services/databaseService";
 import { getUserRegistrationSchema } from "~/utils/validationSchemas";
 
-let a;
-a = 1;
-
-function sucet(a: number, b: number): number {
-  let c = a + b;
-
-  return c;
-}
-
 export let action: ActionFunction = async function ({ request }) {
   let form = await request.formData();
 

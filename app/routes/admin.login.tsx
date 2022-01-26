@@ -1,6 +1,4 @@
 import { ActionFunction, Form } from "remix";
-import { object } from "yup";
-import { string } from "yup";
 import { databaseService } from "~/services/databaseService";
 import { getUserLoginSchema } from "~/utils/validationSchemas";
 
@@ -8,7 +6,6 @@ export const action: ActionFunction = async function ({ request }) {
   const form = await request.formData();
   const email = form.get("email")?.toString() ?? "";
   const password = form.get("password")?.toString() ?? "";
-  console.log(email, password);
 
   let schema = getUserLoginSchema();
   try {

@@ -26,7 +26,6 @@ export function getUserLoginSchema() {
  */
 export function getUserResetSchema() {
   return object({
-    password: string().required().min(6),
     email: string().email().required(),
   });
 }
