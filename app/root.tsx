@@ -46,8 +46,8 @@ export const meta: MetaFunction = () => {
 export let loader: LoaderFunction = ({ request }) => {
     let url = new URL(request.url);
 
-    if (url.pathname.endsWith("/")) {
-        url.pathname = url.pathname.replace(/\/+$/, "");
+    if (!url.pathname.endsWith("/")) {
+        url.pathname = `${url.pathname}/`;
         return redirect(url.toString());
     }
 
