@@ -15,6 +15,7 @@ import {
     TextInput,
     links as textInputLinks,
 } from "~/components/form/TextInput";
+import { useTranslation } from "react-i18next";
 
 export let links: LinksFunction = function () {
     return [
@@ -37,15 +38,16 @@ export const CatchBoundary = createFormValidationCatchBoundary(RegisterRoute);
 export default function RegisterRoute() {
     let actionData = useActionData<RequestResponse>();
     let transition = useTransition();
+    let { t } = useTranslation(["auth"]);
 
     return (
         <RequestContext.Provider value={{ error: actionData?.error }}>
             <Form method="post">
-                <Text.Heading level="h2">Welcome to the team</Text.Heading>
+                <Text.Heading level="h2">{t`welcomeToTheTeam`}</Text.Heading>
 
                 <Text.Text as="span" size="md">
-                    All invited people will be granted access to all sites
-                    within your organisation
+                    {t`register.subtitle`}
+                    
                 </Text.Text>
 
                 <fieldset
@@ -55,19 +57,19 @@ export default function RegisterRoute() {
                 >
                     <TextInput
                         name="firstName"
-                        label="First name"
+                        label={t`register.firstName`}
                         type="text"
                     />
-                    <TextInput name="lastName" label="Last name" type="text" />
+                    <TextInput name="lastName" label={t`register.lastName`} type="text" />
                     <TextInput
                         name="email"
-                        label="E-mail"
+                        label={t`register.email`}
                         autoComplete="username"
                         type="email"
                     />
                     <TextInput
                         name="password"
-                        label="Password"
+                        label={t`register.password`}
                         type="password"
                         autoComplete="new-password"
                     />
@@ -77,12 +79,12 @@ export default function RegisterRoute() {
                         block
                         style={{ marginBottom: 20 }}
                     >
-                        Register
+                        {t`register.register`}
                     </Button>
                     <ButtonGroup alignChildren="center">
                         <Text.Paragraph>
-                            Already A Member?{" "}
-                            <Link to={AUTH_ROUTES.login}>Log In</Link>
+                            {t`alreadyMemeber`}{" "}
+                            <Link to={AUTH_ROUTES.login}>{t`register.logIn`}</Link>
                         </Text.Paragraph>
                     </ButtonGroup>
                 </fieldset>

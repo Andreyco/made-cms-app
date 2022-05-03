@@ -19,6 +19,7 @@ import { ActionDataFunction } from "~/utils/remix";
 
 import * as Text from "~/components/text";
 import { ButtonGroup } from "~/components/buttonGroup";
+import { useTranslation } from "react-i18next";
 
 export let links: LinksFunction = function () {
     return [
@@ -46,9 +47,12 @@ function getFileBlob(canvas: HTMLCanvasElement): Promise<Blob> {
     });
 }
 
+
 export default function ProfileRoute() {
     let FORM_ID = "profile-form";
     let AVATAR_FIELD_NAME = "avatar";
+
+    let { t } = useTranslation(["common"]);
 
     let avatarInputRef = createRef<AvatarEditor>();
 
@@ -74,6 +78,7 @@ export default function ProfileRoute() {
 
     let fetcher = useFetcher();
     let user = useSessionData()!;
+   
 
     return (
         <RequestContext.Provider
@@ -93,10 +98,10 @@ export default function ProfileRoute() {
                 <div className="section">
                     <div className="title">
                         <Text.Text as="span" weight="bold" size="md">
-                            Your photo
+                            {t`settings.settings.photo`}
                         </Text.Text>
                         <Text.Text as="span" size="md">
-                            This will be displayed on your profile.
+                            {t`thisWillBeDisplayedOnYourProfile`}
                         </Text.Text>
                     </div>
                     <div className="field">
@@ -111,11 +116,11 @@ export default function ProfileRoute() {
                 <div className="section">
                     <div className="title">
                         <Text.Text as="span" weight="bold" size="md">
-                            Email address
+                            {t`settings.emailAddress`}
                         </Text.Text>
                         <Text.Text as="span" size="md">
-                            Email address used for registration. Cannot be
-                            changed.
+                            {t`emialAddressUsedForReg`}
+                            
                         </Text.Text>
                     </div>
                     <div className="field">
@@ -130,7 +135,7 @@ export default function ProfileRoute() {
                 <div className="section">
                     <div className="title">
                         <Text.Text as="span" weight="bold" size="md">
-                            Your name
+                            {t`settings.settings.yourName`}
                         </Text.Text>
                     </div>
                     <div className="field">
@@ -162,7 +167,7 @@ export default function ProfileRoute() {
                 </div>
                 {fetcher.data?.user ? (
                     <Alert type="success" style={{ marginTop: 20 }}>
-                        Profile update successfully.
+                            {t`profileUpdateSuccessfuly`}
                     </Alert>
                 ) : null}
             </Form>

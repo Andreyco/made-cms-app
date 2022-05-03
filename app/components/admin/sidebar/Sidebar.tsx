@@ -1,5 +1,6 @@
 import cx from "classnames";
 import { Book, LogOut, Settings, Users } from "react-feather";
+import { useTranslation } from "react-i18next";
 import { Link, LinksFunction, NavLink } from "remix";
 import { Avatar, links as avatarLinks } from "~/components/avatar";
 import { Logo } from "~/components/logo";
@@ -13,6 +14,8 @@ export let links: LinksFunction = function () {
 export let Sidebar: React.FC = function () {
     let sessionData = useSessionData()!;
     let fullName = `${sessionData.firstName} ${sessionData.lastName}`;
+    let { t } = useTranslation(["common"]);
+
     return (
         <>
             <div className="sidebar-header">
@@ -20,11 +23,11 @@ export let Sidebar: React.FC = function () {
             </div>
             <div className="sidebar-main">
                 <NavLink to="/admin/articles">
-                    <Book /> <span>articles</span>
+                    <Book /> <span>{t`sidebar.link.articles`}</span>
                 </NavLink>
                 <NavLink to="/admin/users/list">
                     <Users />
-                    <span>users</span>
+                    <span>{t`sidebar.link.users`}</span>
                 </NavLink>
             </div>
             <div className="sidebar-footer">

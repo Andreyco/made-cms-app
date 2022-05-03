@@ -5,9 +5,10 @@ export interface User {
     password: string;
     email: string;
     avatar: string | null;
+    language: "sk" | "en" | null;
 }
 
 export type SessionUser = Pick<
     User,
-    "firstName" | "lastName" | "email" | "id" | "avatar"
+    "firstName" | "lastName" | "email" | "id" | "avatar" | "language"
 >;

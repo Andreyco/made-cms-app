@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Form, LinksFunction, useActionData, useTransition } from "remix";
 import { Alert, links as alertLinks } from "~/components/alert";
 import { Button, links as buttonLinks } from "~/components/button";
@@ -34,6 +35,7 @@ export let action: ActionDataFunction<TransactionalEmail> = async function (
 export let CatchBoundary = createFormValidationCatchBoundary(UserInvite);
 
 export default function UserInvite() {
+    let { t } = useTranslation(["common"]);
     let transition = useTransition();
     let actionData = useActionData<RequestResponse<TransactionalEmail>>();
 
@@ -41,8 +43,8 @@ export default function UserInvite() {
         <RequestContext.Provider value={{ error: actionData?.error }}>
             <Form method="post" className="invitation-form">
                 <Text.Paragraph className="subtitle">
-                    All invited people will be granted access to all sites
-                    within your organisation.
+                    {t`invite.inviteSubtitle`}
+                    
                 </Text.Paragraph>
 
                 <fieldset
@@ -52,7 +54,7 @@ export default function UserInvite() {
                     <TextInput
                         name="email"
                         block={true}
-                        placeholder="Invite user by email"
+                        placeholder={t`inviteUserByEmail`}
                         type="email"
                     />
 
@@ -63,7 +65,8 @@ export default function UserInvite() {
                 </fieldset>
                 {actionData?.data ? (
                     <Alert type="success" style={{ marginTop: 20 }}>
-                        Invitation sent successfully.
+                        {t`invitationSentSuccessfully`}
+                        
                     </Alert>
                 ) : null}
             </Form>

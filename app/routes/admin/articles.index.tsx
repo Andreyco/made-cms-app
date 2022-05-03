@@ -1,3 +1,4 @@
+import { LinksFunction } from "@remix-run/node";
 import {
     ActionFunction,
     Form,
@@ -6,10 +7,31 @@ import {
     LoaderFunction,
     useLoaderData,
 } from "remix";
+import { Button, links as buttonLinks } from "~/components/button";
+import { TextInput } from "~/components/form/TextInput";
+import { Paragraph } from "~/components/text";
 import { Article } from "~/models/article";
 import { databaseService } from "~/services/databaseService.server";
 import { getRange } from "~/utils/paging";
 export { CatchBoundary } from "~/components/CatchBoundary";
+import * as Text from "~/components/text";
+import {
+    ButtonGroup,
+    links as buttonGroupLinks,
+} from "~/components/buttonGroup";
+import { ArrowLeft } from "react-feather";
+import { Tabs } from "~/components/Tabs";
+import { NavLink } from "@remix-run/react";
+import { useTranslation } from "react-i18next";
+
+export let links: LinksFunction = function () {
+    return [
+        { rel: "stylesheet", href: require("./articles.index.css") },
+        ...buttonLinks(),
+        ...Text.links(),
+        ...buttonGroupLinks(),
+    ];
+};
 
 interface LoaderData {
     articles: Article[];
@@ -78,6 +100,7 @@ export const action: ActionFunction = async function ({ request }) {
 
 export default function AdminArticleListing() {
     const data = useLoaderData<LoaderData>();
+    let { t } = useTranslation(["common"]);
     function confirmDelete(event: React.FormEvent<HTMLFormElement>) {
         if (window.confirm("Are you sure?") === false) {
             event.preventDefault();
@@ -86,23 +109,48 @@ export default function AdminArticleListing() {
 
     return (
         <>
-            <Link to={"/admin/articles/new"}>write new article</Link>
-            {data.articles.map((article) => (
-                <Form key={article.id} method="delete" onSubmit={confirmDelete}>
-                    <input
-                        defaultValue={article.id}
-                        name="id"
-                        type="hidden"
-                    ></input>
-                    {article.id},{article.title}
-                    <Link to={`/admin/articles/${article.id}`}>Edit</Link>
-                    <button type="submit">Delete</button>
-                </Form>
-            ))}
-            {data.previousPageUrl && (
-                <Link to={data.previousPageUrl}>previous page</Link>
-            )}
-            {data.nextPageUrl && <Link to={data.nextPageUrl}>next page</Link>}
+            <Text.Heading level="h1">{t`articles.articleList`}</Text.Heading>
+
+            <div className="article-link">
+                <ButtonGroup alignChildren="end">
+                    <Link to={"/admin/articles/new"}>{t`writeNewArticle`}</Link>
+                </ButtonGroup>
+            </div>
+
+            <div className="form">
+                {data.articles.map((article) => (
+                    <Form
+                        key={article.id}
+                        method="delete"
+                        onSubmit={confirmDelete}
+                    >
+                        <input
+                            defaultValue={article.id}
+                            name="id"
+                            type="hidden"
+                        ></input>
+                        {article.id},{article.title}
+                        <ButtonGroup alignChildren="end">
+                            <Link to={`/admin/articles/${article.id}`}>
+                                {t`articles.edit`}
+                                
+                            </Link>
+                        </ButtonGroup>
+                        <Button appearance="default">{t`articles.deleteButton`}</Button>
+                    </Form>
+                ))}
+            </div>
+
+            <div className="next-prev">
+                <ButtonGroup alignChildren="center">
+                    {data.previousPageUrl && (
+                        <Link to={data.previousPageUrl}>{t`articles.prevPage`}</Link>
+                    )}
+                    {data.nextPageUrl && (
+                        <Link to={data.nextPageUrl}>{t`articles.nextPage`}</Link>
+                    )}
+                </ButtonGroup>
+            </div>
         </>
     );
 }

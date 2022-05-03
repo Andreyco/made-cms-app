@@ -1,0 +1,30 @@
+{
+    "sidebar.link.articles": "Articles",
+    "sidebar.link.users": "Users",
+
+    "users.list.users": "Users",
+    "users.list.all": "All",
+    "users.list.invite": "Invite",
+    "invite.inviteSubtitle": "All invited people will be granted access to all sites within your organisation.",
+    "invitationSentSuccessfully": "Invitation sent successfully.",
+    "inviteUserByEmail": "Invite user by email",
+
+    "profile.myProfile": "My Profile",
+    "profile.settings": "Settings",
+    "profile.myArticles": "My Articles",
+
+    "settings.settings.photo": "Your Photo",
+    "thisWillBeDisplayedOnYourProfile": "This will be displayed on your profile.",
+    "settings.emailAddress": "Email Address",
+    "emialAddressUsedForReg": "Email address used for registration. Cannot be changed.",
+    "settings.settings.yourName": "Your Name",
+    "profileUpdateSuccessfuly": "Profile update successfully.",
+
+    "articles.articleList": "Article List",
+    "writeNewArticle": "Write new article",
+    "articles.edit": "Edit",
+    "articles.deleteButton": "Delete",
+    "articles.prevPage": "Previous page",
+    "articles.nextPage": "Next Page"
+}
+    

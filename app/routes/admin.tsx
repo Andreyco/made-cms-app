@@ -33,6 +33,10 @@ export const links: LinksFunction = function () {
     ];
 };
 
+export let handle = {
+    i18n: ["common"],
+};
+
 export const loader: LoaderFunction = function ({ request }): Response {
     const url = new URL(request.url);
     const isAuthRoute = url.pathname.startsWith("/admin/auth");

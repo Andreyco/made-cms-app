@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
     Form,
     Link,
@@ -42,18 +43,20 @@ export default function NewPasswordRoute() {
     let [searchParams] = useSearchParams();
     let actionData = useActionData();
     let transition = useTransition();
+    let { t } = useTranslation(["auth"]);
 
     return (
         <RequestContext.Provider value={{ error: actionData?.error }}>
             <Form method="post">
                 <Text.Heading level="h2" style={{ marginBottom: 40 }}>
-                    Set new password
+                    {t`setNewPassword`}
+                    
                 </Text.Heading>
 
                 {actionData?.data ? (
                     <Alert type="success" style={{ marginTop: 20 }}>
-                        New password was set. You can{" "}
-                        <Link to={AUTH_ROUTES.login}>log in</Link> now.
+                {t`updatePassword.alert`}{" "}
+                        <Link to={AUTH_ROUTES.login}>{t`updatePass.logiIn`}</Link>{t`updatePass.now`} 
                     </Alert>
                 ) : (
                     <fieldset
@@ -64,7 +67,7 @@ export default function NewPasswordRoute() {
                         <TextInput
                             autoFocus
                             type="password"
-                            label="Password"
+                            label={t`updatePass.password`}
                             name="password"
                             autoComplete="new-password"
                         />
@@ -84,7 +87,7 @@ export default function NewPasswordRoute() {
 
                         <ButtonGroup alignChildren="center">
                             <Button appearance="primary" block>
-                                Continue
+                                {t`updatePass.continue`}
                             </Button>
                         </ButtonGroup>
                     </fieldset>
