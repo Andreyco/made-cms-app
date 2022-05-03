@@ -62,7 +62,7 @@ export const action = async function ({ request, params }: Ctx) {
     }
     const articleId = saveOperationResult.data![0].id;
 
-    //save tags
+    // save tags
     // const tagsToSave: Partial<Tag>[] = form
     //   .getAll("tags[]")
     //   .map(function (tagName) {

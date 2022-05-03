@@ -1,0 +1,30 @@
+{
+    "sidebar.link.articles": "Články",
+    "sidebar.link.users": "Užívatelia",
+    "sidebar.list.users": "Užívatelia",
+
+    "users.list.users": "Užívatelia",
+    "users.list.all": "Všetci",
+    "users.list.invite": "Pozvánka",
+    "invite.inviteSubtitle": "Všetci pozvaní užívatelia budú mať udelený prístup na všetky stránky v rámci vašej organizácie.",
+    "invitationSentSuccessfully": "Pozvánka bola úspešne odoslaná.",
+    "inviteUserByEmail": "Pozvite užívateľa e-mailom",
+
+    "profile.myProfile": "Môj profil",
+    "profile.settings": "Nastavenia",
+    "profile.myArticles": "Moje články",
+
+    "settings.settings.photo": "Tvoja fotka",
+    "thisWillBeDisplayedOnYourProfile": "Bude zobrazená na tvojom profile.",
+    "settings.emailAddress": "Emailová adresa",
+    "emialAddressUsedForReg":"Emailová adresa používana pre registráciu. Nemôže byť zmenená.",
+    "settings.settings.yourName": "Tvoje meno",
+    "profileUpdateSuccessfuly": "Aktualizácia profilu prebehla úspešne.",
+
+    "articles.articleList": "Zoznam článkov",
+    "writeNewArticle": "Napísať nový článok",
+    "articles.edit": "Upraviť",
+    "articles.deleteButton": "Vymazať",
+    "articles.prevPage": "Predchadzajúca strana",
+    "articles.nextPage": "Ďalšia strana"
+}

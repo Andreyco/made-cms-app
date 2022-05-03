@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
     Links,
     LinksFunction,
@@ -55,8 +56,10 @@ export let loader: LoaderFunction = ({ request }) => {
 };
 
 let Document: React.FC = function (props) {
+    const { i18n } = useTranslation();
+
     return (
-        <html lang="en">
+        <html lang={i18n.language} dir={i18n.dir()}>
             <head>
                 <meta charSet="utf-8" />
                 <meta

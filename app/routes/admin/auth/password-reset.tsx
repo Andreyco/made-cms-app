@@ -16,6 +16,7 @@ import {
 import * as Text from "~/components/text";
 import { AUTH_ROUTES } from "../../admin";
 import { ArrowLeft } from "react-feather";
+import { useTranslation } from "react-i18next";
 
 export let links: LinksFunction = function () {
     return [
@@ -36,22 +37,28 @@ export let action: ActionDataFunction = async function (args) {
 export const CatchBoundary =
     createFormValidationCatchBoundary(ForgotPasswordRoute);
 
+ export let handle = {
+        i18n: ["auth"],
+    };
+
 export default function ForgotPasswordRoute() {
     let actionData = useActionData();
     let transition = useTransition();
+    let { t } = useTranslation(["auth"]);
 
     return (
         <RequestContext.Provider value={{ error: actionData?.error }}>
             <Form method="post">
-                <Text.Heading level="h2">Reset your password</Text.Heading>
+                <Text.Heading level="h2">{t`resetYourPassword`}</Text.Heading>
                 <Text.Paragraph className="subtitle">
-                    Enter the email address associated with your account, and
-                    we'll send you a link to reset your password.
+                    {t`reset.subtitle`}
+                    
                 </Text.Paragraph>
 
                 {actionData?.data ? (
                     <Alert type="success" style={{ marginTop: 20 }}>
-                        Check your email for password reset instructions.
+                        {t`reset.checkEmail`}
+                        
                     </Alert>
                 ) : (
                     <fieldset
@@ -63,7 +70,7 @@ export default function ForgotPasswordRoute() {
                             name="email"
                             type="email"
                             autoComplete="username"
-                            label="Email address"
+                            label={t`reset.emailAddress`}
                         />
 
                         <Button
@@ -71,12 +78,14 @@ export default function ForgotPasswordRoute() {
                             appearance="primary"
                             style={{ marginBottom: 20 }}
                         >
-                            Continue
+                            {t`reset.continue`}
+                            
                         </Button>
                         <ButtonGroup alignChildren="center">
                             <Link to={AUTH_ROUTES.login}>
                                 <ArrowLeft size={16} />
-                                Return to sign in
+                                {t`returnToSignIn`}
+                                
                             </Link>
                         </ButtonGroup>
                     </fieldset>

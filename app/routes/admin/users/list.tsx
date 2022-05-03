@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
     json,
     LinksFunction,
@@ -19,7 +20,8 @@ export let links: LinksFunction = function () {
 
 export default function UsersListRoute() {
     const data = useLoaderData<LoaderData>();
-
+    let { t } = useTranslation(["common"]);
+    
     return (
         <div className="user-list-layout">
             <div className="user-list">
