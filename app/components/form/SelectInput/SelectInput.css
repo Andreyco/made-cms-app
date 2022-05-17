@@ -1,0 +1,9 @@
+.form-field-select {
+    background: var(--field-background);
+    height: var(--field-height);
+    box-sizing: border-box;
+    border-radius: var(--field-radius);
+    color: var(--field-text-color);
+    font-size: var(--field-text-size);
+    text-align: left;
+}

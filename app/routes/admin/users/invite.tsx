@@ -44,7 +44,6 @@ export default function UserInvite() {
             <Form method="post" className="invitation-form">
                 <Text.Paragraph className="subtitle">
                     {t`invite.inviteSubtitle`}
-                    
                 </Text.Paragraph>
 
                 <fieldset
@@ -59,14 +58,14 @@ export default function UserInvite() {
                     />
 
                     <Button appearance="primary" type="submit">
-                        {transition.state === "submitting" ? "Sending" : "Send"}{" "}
-                        invitation
+                        {transition.state === "submitting"
+                            ? t`button.sendingInvitation`
+                            : t`button.sendInvitation`}
                     </Button>
                 </fieldset>
                 {actionData?.data ? (
                     <Alert type="success" style={{ marginTop: 20 }}>
                         {t`invitationSentSuccessfully`}
-                        
                     </Alert>
                 ) : null}
             </Form>

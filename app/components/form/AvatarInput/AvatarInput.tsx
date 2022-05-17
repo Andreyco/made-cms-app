@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AvatarEditor from "react-avatar-editor";
+import { useTranslation } from "react-i18next";
 import { LinksFunction } from "remix";
 import { Avatar } from "~/components/avatar/Avatar";
 
@@ -20,6 +21,7 @@ let BORDER_WIDTH = 50;
 
 export let AvatarInput = React.forwardRef<AvatarEditor, Props>((props, ref) => {
     let [fileUrl, setFileUrl] = useState<string>();
+    let { t } = useTranslation(["common"]);
 
     return (
         <div
@@ -49,7 +51,7 @@ export let AvatarInput = React.forwardRef<AvatarEditor, Props>((props, ref) => {
                         htmlFor={`${props.name}-avatar-input`}
                         className="change-discard-button"
                     >
-                        change
+                        {t`button.changeDiscardButton`}
                     </label>
                 </>
             )}

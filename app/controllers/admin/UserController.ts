@@ -40,6 +40,7 @@ export class UserController {
                     firstName:
                         (formData.get("firstName") as null | string) ?? "",
                     lastName: (formData.get("lastName") as null | string) ?? "",
+                    language: (formData.get("language") as null | string) ?? "",
                 },
                 { abortEarly: false, stripUnknown: true },
             );

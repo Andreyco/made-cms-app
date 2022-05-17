@@ -26,5 +26,17 @@
     "articles.edit": "Upraviť",
     "articles.deleteButton": "Vymazať",
     "articles.prevPage": "Predchadzajúca strana",
-    "articles.nextPage": "Ďalšia strana"
+    "articles.nextPage": "Ďalšia strana",
+    "label.language": "Jazyk",
+    "label.language.en": "Anglický",
+    "label.language.sk": "Slovenský",
+
+    "button.savingChanges": "Ukladám zmeny",
+    "button.saveChanges": "Uložiť zmeny",
+
+    "button.sendingInvitation": "Odosielam",
+    "button.sendInvitation": "Odoslať",
+
+    "button.changeDiscardButton": "Zmeniť"
+
 }
