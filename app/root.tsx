@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
+    json,
     Links,
     LinksFunction,
     LiveReload,
@@ -11,11 +12,17 @@ import {
     redirect,
     Scripts,
     ScrollRestoration,
+    useLoaderData,
 } from "remix";
 import {
     CatchBoundary as CommonCatchBoundary,
     links as catchBoundaryLinks,
 } from "~/components/CatchBoundary";
+import { getSessionData } from "./services/authService.server";
+
+interface LoaderData {
+    applicationLanguage: "en" | "sk";
+}
 
 export let links: LinksFunction = () => {
     return [
@@ -44,7 +51,7 @@ export const meta: MetaFunction = () => {
     return { title: "Blog by .made" };
 };
 
-export let loader: LoaderFunction = ({ request }) => {
+export let loader: LoaderFunction = ({ request }): Response => {
     let url = new URL(request.url);
 
     if (!url.pathname.endsWith("/")) {
@@ -52,11 +59,19 @@ export let loader: LoaderFunction = ({ request }) => {
         return redirect(url.toString());
     }
 
-    return null;
+    return json<LoaderData>({
+        applicationLanguage: getSessionData(request)?.language ?? "en",
+    });
 };
 
 let Document: React.FC = function (props) {
     const { i18n } = useTranslation();
+
+    let loaderData = useLoaderData<LoaderData>();
+
+    useEffect(() => {
+        i18n.changeLanguage(loaderData.applicationLanguage);
+    }, [loaderData.applicationLanguage]);
 
     return (
         <html lang={i18n.language}>
