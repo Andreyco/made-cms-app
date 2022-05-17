@@ -35,5 +35,6 @@ export function getUserProfileUpdateSchema() {
     return object({
         firstName: string().required(),
         lastName: string().required(),
+        language: string().oneOf(['en', 'sk']).required(),
     });
 }

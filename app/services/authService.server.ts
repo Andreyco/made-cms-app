@@ -80,6 +80,7 @@ export async function authenticateUserById(id: number): Promise<string> {
         firstName: user.data.firstName,
         lastName: user.data.lastName,
         email: user.data.email,
+        language: user.data.language,
         avatar: user.data.avatar
             ? storageService().from("avatars").getPublicUrl(user.data.avatar)
                   .publicURL

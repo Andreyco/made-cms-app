@@ -1,5 +1,6 @@
 import { createRef } from "react";
 import AvatarEditor from "react-avatar-editor";
+import { useTranslation } from "react-i18next";
 import { Form, LinksFunction, useFetcher } from "remix";
 import { ValidationError } from "yup";
 import { Alert, links as alertLinks } from "~/components/alert";
@@ -10,16 +11,17 @@ import {
     links as avatarInputLinks,
 } from "~/components/form/AvatarInput";
 import {
+    links as selectInputLinks,
+    SelectInput,
+} from "~/components/form/SelectInput";
+import {
     links as textInputLinks,
     TextInput,
 } from "~/components/form/TextInput";
+import * as Text from "~/components/text";
 import { UserController } from "~/controllers/admin/UserController";
 import { useSessionData } from "~/hooks/useSessionData";
 import { ActionDataFunction } from "~/utils/remix";
-
-import * as Text from "~/components/text";
-import { ButtonGroup } from "~/components/buttonGroup";
-import { useTranslation } from "react-i18next";
 
 export let links: LinksFunction = function () {
     return [
@@ -28,6 +30,7 @@ export let links: LinksFunction = function () {
         ...textInputLinks(),
         ...buttonLinks(),
         ...alertLinks(),
+        ...selectInputLinks(),
         ...Text.links(),
     ];
 };
@@ -46,7 +49,6 @@ function getFileBlob(canvas: HTMLCanvasElement): Promise<Blob> {
         canvas.toBlob((blob) => resolve(blob!), "image/jpeg", 0.95);
     });
 }
-
 
 export default function ProfileRoute() {
     let FORM_ID = "profile-form";
@@ -78,7 +80,6 @@ export default function ProfileRoute() {
 
     let fetcher = useFetcher();
     let user = useSessionData()!;
-   
 
     return (
         <RequestContext.Provider
@@ -120,7 +121,6 @@ export default function ProfileRoute() {
                         </Text.Text>
                         <Text.Text as="span" size="md">
                             {t`emialAddressUsedForReg`}
-                            
                         </Text.Text>
                     </div>
                     <div className="field">
@@ -152,6 +152,30 @@ export default function ProfileRoute() {
                     </div>
                 </div>
                 <div className="section">
+                    <div className="title">
+                        <Text.Text as="span" weight="bold" size="md">
+                            {t`label.language`}
+                        </Text.Text>
+                    </div>
+                    <div className="field">
+                        <SelectInput
+                            name="language"
+                            options={[
+                                {
+                                    value: "en",
+                                    label: t`label.language.en`,
+                                },
+                                {
+                                    value: "sk",
+                                    label: t`label.language.sk`,
+                                },
+                            ]}
+                            type="text"
+                            defaultValue={user.language ?? "en"}
+                        />
+                    </div>
+                </div>
+                <div className="section">
                     <div className="title"></div>
                     <div className="field">
                         <Button
@@ -160,14 +184,14 @@ export default function ProfileRoute() {
                             disabled={fetcher.state !== "idle"}
                         >
                             {fetcher.state !== "idle"
-                                ? "Saving changes"
-                                : "Save changes"}
+                                ? t`button.savingChanges`
+                                : t`button.saveChanges`}
                         </Button>
                     </div>
                 </div>
                 {fetcher.data?.user ? (
                     <Alert type="success" style={{ marginTop: 20 }}>
-                            {t`profileUpdateSuccessfuly`}
+                        {t`profileUpdateSuccessfuly`}
                     </Alert>
                 ) : null}
             </Form>

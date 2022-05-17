@@ -25,6 +25,19 @@
     "articles.edit": "Edit",
     "articles.deleteButton": "Delete",
     "articles.prevPage": "Previous page",
-    "articles.nextPage": "Next Page"
+    "articles.nextPage": "Next Page",
+    "label.language": "Language",
+    "label.language.en": "English",
+    "label.language.sk": "Slovak",
+
+    "button.savingChanges": "Saving Changes",
+    "button.saveChanges": "Save Changes",
+
+    "button.sendingInvitation": "Sending",
+    "button.sendInvitation": "Send",
+
+    "button.changeDiscardButton": "Change"
+  
+
 }
     
