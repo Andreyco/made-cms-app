@@ -28,7 +28,7 @@ export default async function handleRequest(
 ) {
     let i18nInstance = createInstance();
     let localeNamespace = i18n.getRouteNamespaces(remixContext);
-    let language = getSessionData(request)?.language ?? undefined;
+    let language = getSessionData(request)?.language ?? 'en';
 
     await i18nInstance
         .use(initReactI18next)
