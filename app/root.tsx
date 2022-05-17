@@ -59,7 +59,7 @@ let Document: React.FC = function (props) {
     const { i18n } = useTranslation();
 
     return (
-        <html lang={i18n.language} dir={i18n.dir()}>
+        <html lang={i18n.language}>
             <head>
                 <meta charSet="utf-8" />
                 <meta
